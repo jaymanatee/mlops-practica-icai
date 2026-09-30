@@ -11,9 +11,13 @@ import dagshub
 dagshub.init(repo_owner='jaymanatee', repo_name='mlops-practica-icai', mlflow=True)
  
 # Cargar el conjunto de datos 
-iris = datasets.load_iris() 
-X = iris.data 
-y = iris.target 
+try: 
+   iris = pd.read_csv('data/iris_dataset.csv')
+except FileNotFoundError: 
+   print("Error: El archivo 'data/iris_dataset.csv' no fue encontrado.")
+
+X = iris.drop('target', axis=1) 
+y = iris['target'] 
  
 # Iniciar un experimento de MLflow 
 with mlflow.start_run(): 
@@ -34,7 +38,7 @@ with mlflow.start_run():
     joblib.dump(model, 'model.pkl') 
  
     # Registrar el modelo con MLflow 
-    mlflow.sklearn.log_model(model, "random-forest-model") 
+    mlflow.sklearn.log_model(model, "random-forest-model", skops_trusted_types=["sklearn.tree._tree.Tree"])
  
     # Registrar parámetros y métricas 
     mlflow.log_param("n_estimators", 200) 
