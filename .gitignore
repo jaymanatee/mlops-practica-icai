@@ -5,3 +5,4 @@ mlruns/
 venv
 mlflow.db
 dagshub_token.txt
+confusion_matrix.png
