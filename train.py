@@ -14,12 +14,12 @@ import json
 def train_model(n_estimators): 
 # Dagshub config 
     tracking_uri = os.environ.get("MLFLOW_TRACKING_URI") 
-    mlflow.set_tracking_uri(tracking_uri) 
+    mlflow.set_tracking_uri(tracking_uri)
     
     # Cargar el conjunto de datos desde el archivo CSV 
     try: 
         iris = pd.read_csv('data/iris_dataset.csv') 
-    except FileNotFoundError: 
+    except FileNotFoundError:
         print("Error: El archivo 'data/iris_dataset.csv' no fue encontrado.") 
     
     # Dividir el DataFrame en características (X) y etiquetas (y) 
