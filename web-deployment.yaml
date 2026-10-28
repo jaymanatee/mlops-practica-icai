@@ -16,7 +16,7 @@ spec:
     spec: 
       containers: 
       - name: mlops-web 
-        image: gcr.io/tu-project-id/mlops-web:latest
+        image: gcr.io/practica-gke/mlops-web:latest
         ports: 
         - containerPort: 8501 
         env: 
